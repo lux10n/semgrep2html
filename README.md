@@ -17,5 +17,5 @@ pip3 install jinja2
 ```
 
 ## Example Report
-![image](https://user-images.githubusercontent.com/35167539/205737643-562ec6dc-a6f4-4fe9-b35e-34b974513f1f.png)
 
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/3946d350-128f-44c8-a586-33615383eaac" />
