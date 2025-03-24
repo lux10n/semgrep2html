@@ -132,7 +132,7 @@ pre, code {
 <li> From : Line <strong>{{ result.start.line }}</strong>, Column <strong>{{ result.start.col }}</strong> </li>
 <li> To : Line <strong>{{ result.end.line }}</strong>, Column <strong>{{ result.end.col }}</strong> </li>
 </ul>
-<pre><code class="java">{% if result['extra']['lines'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['lines'] }} {% endif %}</code></pre>
+<pre><code class="java">{% if result['extra']['lines'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %}{{ result['extra']['lines'] }}{% endif %}</code></pre>
 
 <p>
     <strong>Issue characteristics : </strong>
@@ -184,7 +184,7 @@ pre, code {
 
 {% if result['extra']['fix'] %} 
 <p><strong>Fix / Suggestion Code: </strong></p>
-<pre><code class="java">{% if result['extra']['fix'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['fix'] }} {% endif %}</code></pre>{% endif %}
+<pre><code class="java">{% if result['extra']['fix'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %}{{ result['extra']['fix'] }}{% endif %}</code></pre>{% endif %}
 
 {% if result['extra']['metadata']['docs'] %}
 Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra']['metadata']['docs'] }}</a>
