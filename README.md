@@ -20,8 +20,6 @@ $ python3 parse-semgrep.py --input semgrep-output.json --output ideal-report.htm
 
 - -h, --help
 
-REQUIRED
-
 Show help menu.
 
 - --project-name PROJECT_NAME
