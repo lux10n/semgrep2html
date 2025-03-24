@@ -132,7 +132,7 @@ pre, code {
 <li> From : Line <strong>{{ result.start.line }}</strong>, Column <strong>{{ result.start.col }}</strong> </li>
 <li> To : Line <strong>{{ result.end.line }}</strong>, Column <strong>{{ result.end.col }}</strong> </li>
 </ul>
-<pre><code class="java">{% if result['extra']['lines'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['lines'] | replace("\n","<br>") | e }} {% endif %}</code></pre>
+<pre><code class="java">{% if result['extra']['lines'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['lines'] }} {% endif %}</code></pre>
 
 <p>
     <strong>Issue characteristics : </strong>
@@ -184,7 +184,7 @@ pre, code {
 
 {% if result['extra']['fix'] %} 
 <p><strong>Fix / Suggestion Code: </strong></p>
-<pre><code class="java">{% if result['extra']['fix'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['fix'] | replace("\n","<br>") | e  }} {% endif %}</code></pre>{% endif %}
+<pre><code class="java">{% if result['extra']['fix'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['fix'] }} {% endif %}</code></pre>{% endif %}
 
 {% if result['extra']['metadata']['docs'] %}
 Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra']['metadata']['docs'] }}</a>
@@ -286,10 +286,10 @@ if __name__=="__main__":
             if args.only:
                 jdata = [item for item in jdata if item.get("extra", {}).get("severity", "UNKNOWN") in args.only]
             env = Environment(
-                loader=FileSystemLoader("."),  # Adjust to your templates path
+                loader=FileSystemLoader("."), 
                 autoescape=select_autoescape(["html", "xml"])  # Autoescape HTML/XML output
             )
-            t = env.from_string(template)  # Use this secured template
+            t = env.from_string(template) 
             # t = Template(template)
             count = len(jdata)
             # Sort results using the custom function
