@@ -1,24 +1,17 @@
 import argparse
 import json
-from jinja2 import Template
-import os
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-# Define a command-line argument parser
-parser = argparse.ArgumentParser()
-parser.add_argument('--input', required=True, help='Path to the input JSON file')
-parser.add_argument('--output', required=True, help='Path to the output file')
-parser.add_argument('--templates', required=True, help='Path to the template location')
-
-# Parse the command-line arguments
-args = parser.parse_args()
-
+from datetime import datetime, timezone
+from collections import Counter
+import sys
 
 template = """
 <!DOCTYPE html>
 <html>
 <head>
     <title>
-        Semgrep - output
+        {{ project_name }} Semgrep Scan
     </title>
     <style>
     body{
@@ -31,6 +24,10 @@ template = """
     white-space: -o-pre-wrap;    /* Opera 7 */
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 } 
+
+html {
+    font-size: 70%; 
+}
 pre, code {
         font-family: Consolas, monospace;
         font-size: 12px;
@@ -52,34 +49,143 @@ pre, code {
 
 </head>
 <body>
-<div class="container">
+<div class="p-5">
     <br><br>
-    <h3> Semgrep Report ( {{ count }} potential vulnerabilties found)</h3>
+    <p class="pt-3 pb-3 text-center"><img src="https://semgrep.dev/build/assets/semgrep-logo-dark-F_zJCZNg.svg" alt="Semgrep CE" width="350px"></p>
+    <h3> Scan of {{ project_name }} </h3>
+    <h5 class="text-secondary fw-normal"> {{ scan_date }} </h5>
     <hr>
+
+    <h4 class="fw-normal mb-3"> Found <strong>{{ count }}</strong> potential issues across <strong>{{ scanned_file_count }}</strong> files. </h4>
+
+    <div class="d-flex text-center">
+        <div class="w-25 border-danger me-2">
+            <div class="alert alert-danger mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0"> {{ severity_counts['ERROR'] }}</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">High</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-warning me-2">
+            <div class="alert alert-warning mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">{{ severity_counts['WARNING'] }}</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Moderate</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-primary me-2">
+            <div class="alert alert-primary mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">{{ severity_counts['INFO'] }}</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Low</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-secondary me-2">
+            <div class="alert alert-secondary mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">{{ severity_counts['UNKNOWN'] }}</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Other</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+        
+    <p class=mb-4>&nbsp;</p>
 
     {% for result in results %}
 
-<h4> Check for  {{ result.check_id }} </h4>
+
+<div class="p-2 alert 
+{% if result['extra']['severity'] == "ERROR" %}
+    alert-danger
+{% elif result['extra']['severity'] == "WARNING" %}
+    alert-warning
+{% elif result['extra']['severity'] == "INFO" %}
+    alert-primary
+{% else %}
+    alert-secondary
+{% endif %} rounded-0 mb-2"> 
+    <h5>Check for  {{ result.check_id }} </h5>
+</div>
 
 <p><strong>Description :</strong> {{ result['extra']['message']  }} </p>
 
 <p> <strong>Source File :</strong> {{ result.path }} </p>
-<p> Line<strong> start :</strong> {{ result.start.line }} </p>
-<pre><code class="java">
-    {{ result['extra']['lines'] | replace("\n","<br>") }}
-    </code></pre>
 
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>{{ result.start.line }}</strong>, Column <strong>{{ result.start.col }}</strong> </li>
+<li> To : Line <strong>{{ result.end.line }}</strong>, Column <strong>{{ result.end.col }}</strong> </li>
+</ul>
+<pre><code class="java">{% if result['extra']['lines'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['lines'] | replace("\n","<br>") }} {% endif %}</code></pre>
 
-{% if result['extra']['severity'] == "ERROR" %}
-    <button type="button" class="btn btn-outline-danger">Severity: Critical</button>
-{% elif result['extra']['severity'] == "WARNING" %}
-    <button type="button" class="btn btn-outline-warning">Severity: High</button>
-{% elif result['extra']['severity'] == "INFO" %}
-    <button type="button" class="btn btn-outline-success">Severity: Low</button>
-{% endif %}
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    {% if result['extra']['severity'] == "ERROR" %}
+        <strong class="text-danger">High</strong>
+    {% elif result['extra']['severity'] == "WARNING" %}
+        <strong class="text-warning">Moderate</strong>
+    {% elif result['extra']['severity'] == "INFO" %}
+        <strong class="text-primary">Low</strong>
+    {% else %}
+        <strong class="text-secondary">{{ result['extra']['severity'] }}</strong>
+    {% endif %}
+    </span> /
+    <span>Confidence:  
+    {% if result['extra']['metadata']['confidence'] == "HIGH" %}
+        <strong class="text-danger">High</strong>
+    {% elif result['extra']['metadata']['confidence'] == "MEDIUM" %}
+        <strong class="text-warning">Medium</strong>
+    {% elif result['extra']['metadata']['confidence'] == "LOW" %}
+        <strong class="text-primary">Low</strong>
+    {% else %}
+        <strong class="text-secondary">{{ result['extra']['metadata']['confidence'] }}</strong>
+    {% endif %}
+    </span> /
+    <span>Impact:  
+    {% if result['extra']['metadata']['impact'] == "HIGH" %}
+        <strong class="text-danger">High</strong>
+    {% elif result['extra']['metadata']['impact'] == "MEDIUM" %}
+        <strong class="text-warning">Medium</strong>
+    {% elif result['extra']['metadata']['impact'] == "LOW" %}
+        <strong class="text-primary">Low</strong>
+    {% else %}
+        <strong class="text-secondary">{{ result['extra']['metadata']['impact'] }}</strong>
+    {% endif %}
+    </span> /
+    <span>Likelihood:  
+    {% if result['extra']['metadata']['likelihood'] == "HIGH" %}
+        <strong class="text-danger">High</strong>
+    {% elif result['extra']['metadata']['likelihood'] == "MEDIUM" %}
+        <strong class="text-warning">Medium</strong>
+    {% elif result['extra']['metadata']['likelihood'] == "LOW" %}
+        <strong class="text-primary">Low</strong>
+    {% else %}
+        <strong class="text-secondary">{{ result['extra']['metadata']['likelihood'] }}</strong>
+    {% endif %}
+    </span>
+</p>
 
- <button type="button" class="btn btn-danger">Tags: {{ result['extra']['metadata']['technology'] | join(', ') }}</button>
-<br><br>
+{% if result['extra']['fix'] %} 
+<p><strong>Fix / Suggestion Code: </strong></p>
+<pre><code class="java">{% if result['extra']['fix'] == "requires login" %} Preview unavailable, please refer to the line delimiters.{% else %} {{ result['extra']['fix'] | replace("\n","<br>") }} {% endif %}</code></pre>{% endif %}
+
 {% if result['extra']['metadata']['docs'] %}
 Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra']['metadata']['docs'] }}</a>
 {% endif %}
@@ -87,47 +193,136 @@ Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra'][
 
 {% if result['extra']['metadata']['references'] %}
 <strong>References: </strong>
-<ol>
+<ul>
 {% for x in result['extra']['metadata']['references'] %}
 <li><a href="{{ x }}">  {{ x }}</a></li>
 {% endfor %}
-</ol>
+</ul>
 {% endif %}
 
 
 {% if result['extra']['metadata']['cwe'] %}
-<strong>CWE: </strong>
-<ol>
-{% for x in result['extra']['metadata']['cwe'] %}
-<li> {{ x }}</li>
-{% endfor %}
-</ol>
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+{% if result['extra']['metadata']['cwe'] is string %}
+    <li> {{ result['extra']['metadata']['cwe'] }}</li>
+
+{% else %}
+
+    {% for x in result['extra']['metadata']['cwe'] %}
+        <li> {{ x }}</li>
+    {% endfor %}
+
+{% endif %}
+
+</ul>
+
+
+
+{% endif %}
+
+{% if result['extra']['metadata']['owasp'] %}
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+{% if result['extra']['metadata']['owasp'] is string %}
+    <li> {{ result['extra']['metadata']['owasp'] }}</li>
+
+{% else %}
+
+    {% for x in result['extra']['metadata']['owasp'] %}
+        <li> {{ x }}</li>
+    {% endfor %}
+
+{% endif %}
+
+</ul>
+
+<p><strong>Tags: </strong> {{ result['extra']['metadata']['technology'] | join(', ') }}</p>
+
+
+
 {% endif %}
 
 <hr>
 
-
 {% endfor %}
+
+<p class="mt-2 text-end text-secondary">Report generated using Semgrep Community Edition version {{ version }} JSON</p>
 
 </div>
 </body>
 </html>
 """
 
+if __name__=="__main__":
+    # Define a command-line argument parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--project-name', required=True, help='Name of the project to be scanned')
+    parser.add_argument('--input', required=True, help='Path to the input JSON file')
+    parser.add_argument('--output', required=True, help='Path to the output file')
+    parser.add_argument("--error", action="store_true", help="Exit with an error code if an exception occurs.")
+    parser.add_argument("--only", type=lambda s: s.split(","), help="Generate report only for these severities (comma-separated: INFO,WARNING,ERROR,UNKNOWN).")
+
+    # Parse the command-line arguments
+    args = parser.parse_args()
+
+    # Define a fixed order for severity
+    severity_order = {"ERROR": 0, "WARNING": 1, "INFO": 2}
+
+    # Custom sorting function
+    def sort_by_severity(result):
+        return severity_order.get(result["extra"]["severity"], 3)  # Default to lowest priority if missing
+    try : 
+        with open(args.input, 'r') as f:
+            data = json.load(f)
+            jdata = data['results']
 
 
+            # Apply --only filtering if set
+            if args.only:
+                jdata = [item for item in jdata if item.get("extra", {}).get("severity", "UNKNOWN") in args.only]
+            env = Environment(
+                loader=FileSystemLoader("."),  # Adjust to your templates path
+                autoescape=select_autoescape(["html", "xml"])  # Autoescape HTML/XML output
+            )
+            t = env.from_string(template)  # Use this secured template
+            # t = Template(template)
+            count = len(jdata)
+            # Sort results using the custom function
+            data["results"] = sorted(jdata, key=sort_by_severity)
 
-cmd = "semgrep -f {} --output {} --json {}".format(args.templates, args.output+".json", args.input)
-print(cmd)
-os.system(cmd)
-
-
-with open(args.output+".json", 'r') as f:
-    data = json.load(f)
-    jdata = data['results']
-    t = Template(template)
-    count = len(jdata)
-    output = t.render(data, count=count)
-    with open(args.output, 'w') as f:
-        f.write(output)
-
+            # Define known severities
+            valid_severities = {"ERROR", "WARNING", "INFO"}
+            severities = [
+                item["extra"].get("severity", "UNKNOWN") if item["extra"].get("severity") in severity_order 
+                else "UNKNOWN"
+                for item in data.get("results", [])
+            ]
+            # Count occurrences, including unknown values
+            severity_counts = Counter(severities)
+            # Ensure all known severities (and UNKNOWN) exist in the count (set to 0 if missing)
+            for severity in severity_order.keys():
+                severity_counts.setdefault(severity, 0)
+            severity_counts.setdefault("UNKNOWN", 0)
+            print("Findings repartition : ")
+            for (severity, vuln_count) in severity_counts.items():
+                print(f"[i] {severity}: {vuln_count}")
+            print(f"[i] TOTAL : {count}")
+            project_name = args.project_name
+            scan_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S UTC")
+            print(f"[o] Generating report {args.output} ...")
+            output = t.render(data, count=count, project_name=project_name, scan_date=scan_date, version=data['version'], scanned_file_count=len(data['paths']['scanned']), severity_counts=severity_counts)
+            with open(args.output, 'w') as f:
+                f.write(output)
+            print(f"[+] Successfully generated report {args.output} !")
+    except Exception as e:
+        if args.error:
+            print(f"[x] Couldn't generate report {args.output} because of the following error : {type(e).__name__ } // {e}", file=sys.stderr)
+            sys.exit(1)
+        else:
+            print(f"[x] Couldn't generate report {args.output} because of the following error : {type(e).__name__ } // {e}", file=sys.stdout)
+            sys.exit(0)
