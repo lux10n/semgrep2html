@@ -1,0 +1,7058 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        OWASP Juice Shop Semgrep Scan
+    </title>
+    <style>
+    body{
+    background: lightgrey;
+    }
+    pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+} 
+
+html {
+    font-size: 70%; 
+}
+pre, code {
+        font-family: Consolas, monospace;
+        font-size: 12px;
+    }
+
+    /* Set the background and border for the code snippet */
+    pre {
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 16px;
+    }
+
+</style>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="p-5">
+    <br><br>
+    <p class="pt-3 pb-3 text-center"><img src="https://semgrep.dev/build/assets/semgrep-logo-dark-F_zJCZNg.svg" alt="Semgrep CE" width="350px"></p>
+    <h3> Scan of OWASP Juice Shop </h3>
+    <h5 class="text-secondary fw-normal"> Mon, 24 Mar 2025 22:19:31 UTC </h5>
+    <hr>
+
+    <h4 class="fw-normal mb-3"> Found <strong>67</strong> potential issues across <strong>995</strong> files. </h4>
+
+    <div class="d-flex text-center">
+        <div class="w-25 border-danger me-2">
+            <div class="alert alert-danger mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0"> 18</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">High</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-warning me-2">
+            <div class="alert alert-warning mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">45</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Moderate</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-primary me-2">
+            <div class="alert alert-primary mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">4</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Low</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-25 border-secondary me-2">
+            <div class="alert alert-secondary mb-3">
+                <div class="card-header py-2">
+                    <p class="fs-1 mb-0">0</p>
+                </div>
+                <hr>
+                <div class="card-body py-1">
+                    <p class="mb-0">Other</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+        
+    <p class=mb-4>&nbsp;</p>
+
+    
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/dbSchemaChallenge_1.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>5</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>5</strong>, Column <strong>162</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/dbSchemaChallenge_1.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>5</strong>, Column <strong>74</strong> </li>
+<li> To : Line <strong>5</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/dbSchemaChallenge_3.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>11</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>11</strong>, Column <strong>159</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/dbSchemaChallenge_3.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>11</strong>, Column <strong>74</strong> </li>
+<li> To : Line <strong>11</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/unionSqlInjectionChallenge_1.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>6</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>6</strong>, Column <strong>159</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/unionSqlInjectionChallenge_1.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>6</strong>, Column <strong>74</strong> </li>
+<li> To : Line <strong>6</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/unionSqlInjectionChallenge_3.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>10</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>10</strong>, Column <strong>159</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/unionSqlInjectionChallenge_3.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>10</strong>, Column <strong>74</strong> </li>
+<li> To : Line <strong>10</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  generic.secrets.security.detected-generic-secret.detected-generic-secret </h5>
+</div>
+
+<p><strong>Description :</strong> Generic Secret detected </p>
+
+<p> <strong>Source File :</strong> data/static/users.yml </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>150</strong>, Column <strong>7</strong> </li>
+<li> To : Line <strong>150</strong>, Column <strong>47</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures">  https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-798: Use of Hard-coded Credentials</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2021 - Identification and Authentication Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> secrets</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  generic.secrets.security.detected-jwt-token.detected-jwt-token </h5>
+</div>
+
+<p><strong>Description :</strong> JWT token detected </p>
+
+<p> <strong>Source File :</strong> frontend/src/app/app.guard.spec.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>40</strong>, Column <strong>36</strong> </li>
+<li> To : Line <strong>40</strong>, Column <strong>148</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/">  https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-321: Use of Hard-coded Cryptographic Key</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A02:2021 - Cryptographic Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> secrets, jwt</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  generic.secrets.security.detected-jwt-token.detected-jwt-token </h5>
+</div>
+
+<p><strong>Description :</strong> JWT token detected </p>
+
+<p> <strong>Source File :</strong> frontend/src/app/last-login-ip/last-login-ip.component.spec.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>50</strong>, Column <strong>36</strong> </li>
+<li> To : Line <strong>50</strong>, Column <strong>120</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/">  https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-321: Use of Hard-coded Cryptographic Key</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A02:2021 - Cryptographic Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> secrets, jwt</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  generic.secrets.security.detected-jwt-token.detected-jwt-token </h5>
+</div>
+
+<p><strong>Description :</strong> JWT token detected </p>
+
+<p> <strong>Source File :</strong> frontend/src/app/last-login-ip/last-login-ip.component.spec.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>56</strong>, Column <strong>36</strong> </li>
+<li> To : Line <strong>56</strong>, Column <strong>89</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/">  https://semgrep.dev/blog/2020/hardcoded-secrets-unverified-tokens-and-other-common-jwt-mistakes/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-321: Use of Hard-coded Cryptographic Key</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A02:2021 - Cryptographic Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> secrets, jwt</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.browser.security.insecure-document-method.insecure-document-method </h5>
+</div>
+
+<p><strong>Description :</strong> User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities </p>
+
+<p> <strong>Source File :</strong> frontend/src/assets/private/three.js </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>11375</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>11375</strong>, Column <strong>45</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A03_2021-Injection">  https://owasp.org/Top10/A03_2021-Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> browser</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.browser.security.insecure-document-method.insecure-document-method </h5>
+</div>
+
+<p><strong>Description :</strong> User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern that can lead to XSS vulnerabilities </p>
+
+<p> <strong>Source File :</strong> frontend/src/hacking-instructor/index.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>111</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>111</strong>, Column <strong>43</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A03_2021-Injection">  https://owasp.org/Top10/A03_2021-Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> browser</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> routes/login.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>36</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>36</strong>, Column <strong>169</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> routes/login.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>36</strong>, Column <strong>66</strong> </li>
+<li> To : Line <strong>36</strong>, Column <strong>86</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.sequelize.security.audit.sequelize-injection-express.express-sequelize-injection </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a sequelize statement that is tainted by user-input. This could lead to SQL injection if the variable is user-controlled and is not properly sanitized. In order to prevent SQL injection, it is recommended to use parameterized queries or prepared statements. </p>
+
+<p> <strong>Source File :</strong> routes/search.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>23</strong>, Column <strong>28</strong> </li>
+<li> To : Line <strong>23</strong>, Column <strong>159</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements">  https://sequelize.org/docs/v6/core-concepts/raw-queries/#replacements</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-danger
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.tainted-sql-string.tainted-sql-string </h5>
+</div>
+
+<p><strong>Description :</strong> Detected user input used to manually construct a SQL string. This is usually bad practice because manual construction could accidentally result in a SQL injection. An attacker could use a SQL injection to steal or modify contents of the database. Instead, use a parameterized query which is available by default in most database engines. Alternatively, consider using an object-relational mapper (ORM) such as Sequelize which will protect your queries. </p>
+
+<p> <strong>Source File :</strong> routes/search.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>23</strong>, Column <strong>74</strong> </li>
+<li> To : Line <strong>23</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/SQL_Injection">  https://owasp.org/www-community/attacks/SQL_Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2017 - Injection</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> data/staticData.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>7</strong>, Column <strong>33</strong> </li>
+<li> To : Line <strong>7</strong>, Column <strong>65</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.prototype-pollution.prototype-pollution-loop.prototype-pollution-loop </h5>
+</div>
+
+<p><strong>Description :</strong> Possibility of prototype polluting function detected. By adding or modifying attributes of an object prototype, it is possible to create attributes that exist on every object, or replace critical attributes with malicious ones. This can be problematic if the software depends on existence or non-existence of certain attributes, or uses pre-defined attributes of object prototype (such as hasOwnProperty, toString or valueOf). Possible mitigations might be: freezing the object prototype, using an object without prototypes (via Object.create(null) ), blocking modifications of attributes that resolve to object prototype, using Map instead of object. </p>
+
+<p> <strong>Source File :</strong> frontend/src/hacking-instructor/helpers/helpers.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>38</strong>, Column <strong>9</strong> </li>
+<li> To : Line <strong>38</strong>, Column <strong>54</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf">  https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-915: Improperly Controlled Modification of Dynamically-Determined Object Attributes</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A08:2021 - Software and Data Integrity Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> typescript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  html.security.audit.missing-integrity.missing-integrity </h5>
+</div>
+
+<p><strong>Description :</strong> This tag is missing an &#39;integrity&#39; subresource integrity attribute. The &#39;integrity&#39; attribute allows for the browser to verify that externally hosted files (for example from a CDN) are delivered without unexpected manipulation. Without this attribute, if an attacker can modify the externally hosted resource, this could lead to XSS and other types of attacks. To prevent this, include the base64-encoded cryptographic hash of the resource (file) you’re telling the browser to fetch in the &#39;integrity&#39; attribute for all externally hosted files. </p>
+
+<p> <strong>Source File :</strong> frontend/src/index.html </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>127</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures">  https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-353: Missing Support for Integrity Check</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A08:2021 - Software and Data Integrity Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> html</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  html.security.audit.missing-integrity.missing-integrity </h5>
+</div>
+
+<p><strong>Description :</strong> This tag is missing an &#39;integrity&#39; subresource integrity attribute. The &#39;integrity&#39; attribute allows for the browser to verify that externally hosted files (for example from a CDN) are delivered without unexpected manipulation. Without this attribute, if an attacker can modify the externally hosted resource, this could lead to XSS and other types of attacks. To prevent this, include the base64-encoded cryptographic hash of the resource (file) you’re telling the browser to fetch in the &#39;integrity&#39; attribute for all externally hosted files. </p>
+
+<p> <strong>Source File :</strong> frontend/src/index.html </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>15</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>15</strong>, Column <strong>101</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures">  https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-353: Missing Support for Integrity Check</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A08:2021 - Software and Data Integrity Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> html</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  html.security.audit.missing-integrity.missing-integrity </h5>
+</div>
+
+<p><strong>Description :</strong> This tag is missing an &#39;integrity&#39; subresource integrity attribute. The &#39;integrity&#39; attribute allows for the browser to verify that externally hosted files (for example from a CDN) are delivered without unexpected manipulation. Without this attribute, if an attacker can modify the externally hosted resource, this could lead to XSS and other types of attacks. To prevent this, include the base64-encoded cryptographic hash of the resource (file) you’re telling the browser to fetch in the &#39;integrity&#39; attribute for all externally hosted files. </p>
+
+<p> <strong>Source File :</strong> frontend/src/index.html </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>16</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>16</strong>, Column <strong>86</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures">  https://owasp.org/Top10/A08_2021-Software_and_Data_Integrity_Failures</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-353: Missing Support for Integrity Check</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A08:2021 - Software and Data Integrity Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> html</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> lib/codingChallenges.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>24</strong>, Column <strong>40</strong> </li>
+<li> To : Line <strong>24</strong>, Column <strong>48</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> lib/codingChallenges.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>24</strong>, Column <strong>50</strong> </li>
+<li> To : Line <strong>24</strong>, Column <strong>54</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp </h5>
+</div>
+
+<p><strong>Description :</strong> RegExp() called with a `challengeKey` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS. </p>
+
+<p> <strong>Source File :</strong> lib/codingChallenges.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>76</strong>, Column <strong>9</strong> </li>
+<li> To : Line <strong>76</strong>, Column <strong>67</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS">  https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-1333: Inefficient Regular Expression Complexity</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2021 - Security Misconfiguration</li>
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp </h5>
+</div>
+
+<p><strong>Description :</strong> RegExp() called with a `challengeKey` function argument, this might allow an attacker to cause a Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-controlled input, consider performing input validation or use a regex checking/sanitization library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to ReDoS. </p>
+
+<p> <strong>Source File :</strong> lib/codingChallenges.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>78</strong>, Column <strong>16</strong> </li>
+<li> To : Line <strong>78</strong>, Column <strong>77</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS">  https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-1333: Inefficient Regular Expression Complexity</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2021 - Security Misconfiguration</li>
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.hardcoded-hmac-key.hardcoded-hmac-key </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a hardcoded hmac key. Avoid hardcoding secrets and consider using an alternate option such as reading the secret from a config file or using an environment variable. </p>
+
+<p> <strong>Source File :</strong> lib/insecurity.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>44</strong>, Column <strong>39</strong> </li>
+<li> To : Line <strong>44</strong>, Column <strong>94</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://rules.sonarsource.com/javascript/RSPEC-2068">  https://rules.sonarsource.com/javascript/RSPEC-2068</a></li>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#key-management">  https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#key-management</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-798: Use of Hard-coded Credentials</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2021 - Identification and Authentication Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> crypto, hmac</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.jsonwebtoken.security.jwt-hardcode.hardcoded-jwt-secret </h5>
+</div>
+
+<p><strong>Description :</strong> A hard-coded credential was detected. It is not recommended to store credentials in source-code, as this risks secrets being leaked and used by either an internal or external malicious adversary. It is recommended to use environment variables to securely provide credentials or retrieve credentials from a secure vault or HSM (Hardware Security Module). </p>
+
+<p> <strong>Source File :</strong> lib/insecurity.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>56</strong>, Column <strong>56</strong> </li>
+<li> To : Line <strong>56</strong>, Column <strong>66</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-798: Use of Hard-coded Credentials</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2021 - Identification and Authentication Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> jwt, javascript, secrets</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.hardcoded-hmac-key.hardcoded-hmac-key </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a hardcoded hmac key. Avoid hardcoding secrets and consider using an alternate option such as reading the secret from a config file or using an environment variable. </p>
+
+<p> <strong>Source File :</strong> lib/insecurity.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>152</strong>, Column <strong>16</strong> </li>
+<li> To : Line <strong>152</strong>, Column <strong>55</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://rules.sonarsource.com/javascript/RSPEC-2068">  https://rules.sonarsource.com/javascript/RSPEC-2068</a></li>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#key-management">  https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#key-management</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-798: Use of Hard-coded Credentials</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2021 - Identification and Authentication Failures</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> crypto, hmac</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> lib/startup/restoreOverwrittenFilesWithOriginals.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>28</strong>, Column <strong>56</strong> </li>
+<li> To : Line <strong>28</strong>, Column <strong>105</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> lib/startup/validatePreconditions.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>120</strong>, Column <strong>36</strong> </li>
+<li> To : Line <strong>120</strong>, Column <strong>61</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-detect-notevil-usage.express-detect-notevil-usage </h5>
+</div>
+
+<p><strong>Description :</strong> Detected usage of the `notevil` package, which is unmaintained and has vulnerabilities. Using any sort of `eval()` functionality can be very dangerous, but if you must, the `eval` package is an up to date alternative. Be sure that only trusted input reaches an `eval()` function. </p>
+
+<p> <strong>Source File :</strong> routes/b2bOrder.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>22</strong>, Column <strong>9</strong> </li>
+<li> To : Line <strong>22</strong>, Column <strong>80</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://github.com/mmckegg/notevil">  https://github.com/mmckegg/notevil</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-1104: Use of Unmaintained Third Party Components</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A06:2021 - Vulnerable and Outdated Components</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, typescript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.browser.security.eval-detected.eval-detected </h5>
+</div>
+
+<p><strong>Description :</strong> Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources. </p>
+
+<p> <strong>Source File :</strong> routes/captcha.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>23</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>23</strong>, Column <strong>36</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A03_2021-Injection">  https://owasp.org/Top10/A03_2021-Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code (&#39;Eval Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> browser</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.injection.raw-html-format.raw-html-format </h5>
+</div>
+
+<p><strong>Description :</strong> User data flows into the host portion of this manually-constructed HTML. This can introduce a Cross-Site-Scripting (XSS) vulnerability if this comes from user-provided input. Consider using a sanitization library such as DOMPurify to sanitize the HTML within. </p>
+
+<p> <strong>Source File :</strong> routes/chatbot.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>198</strong>, Column <strong>46</strong> </li>
+<li> To : Line <strong>198</strong>, Column <strong>56</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Possible writing outside of the destination, make sure that the target path is nested in the intended destination </p>
+
+<p> <strong>Source File :</strong> routes/dataErasure.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>69</strong>, Column <strong>45</strong> </li>
+<li> To : Line <strong>69</strong>, Column <strong>60</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/dataErasure.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>69</strong>, Column <strong>45</strong> </li>
+<li> To : Line <strong>69</strong>, Column <strong>60</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-res-sendfile.express-res-sendfile </h5>
+</div>
+
+<p><strong>Description :</strong> The application processes user-input, this is passed to res.sendFile which can allow an attacker to arbitrarily read files on the system through path traversal. It is recommended to perform input validation in addition to canonicalizing the path. This allows you to validate the path against the intended directory it should be accessing. </p>
+
+<p> <strong>Source File :</strong> routes/fileServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>33</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>33</strong>, Column <strong>46</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-73: External Control of File Name or Path</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A04:2021 - Insecure Design</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/fileServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>33</strong>, Column <strong>41</strong> </li>
+<li> To : Line <strong>33</strong>, Column <strong>45</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/fileUpload.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>29</strong>, Column <strong>47</strong> </li>
+<li> To : Line <strong>29</strong>, Column <strong>55</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/fileUpload.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>39</strong>, Column <strong>51</strong> </li>
+<li> To : Line <strong>39</strong>, Column <strong>83</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-libxml-vm-noent.express-libxml-vm-noent </h5>
+</div>
+
+<p><strong>Description :</strong> Detected use of parseXml() function with the `noent` field set to `true`. This can lead to an XML External Entities (XXE) attack if untrusted data is passed into it. </p>
+
+<p> <strong>Source File :</strong> routes/fileUpload.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>80</strong>, Column <strong>24</strong> </li>
+<li> To : Line <strong>80</strong>, Column <strong>140</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-611: Improper Restriction of XML External Entity Reference</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A04:2017 - XML External Entities (XXE)</li>
+    
+        <li> A05:2021 - Security Misconfiguration</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-res-sendfile.express-res-sendfile </h5>
+</div>
+
+<p><strong>Description :</strong> The application processes user-input, this is passed to res.sendFile which can allow an attacker to arbitrarily read files on the system through path traversal. It is recommended to perform input validation in addition to canonicalizing the path. This allows you to validate the path against the intended directory it should be accessing. </p>
+
+<p> <strong>Source File :</strong> routes/keyServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>57</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-73: External Control of File Name or Path</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A04:2021 - Insecure Design</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Possible writing outside of the destination, make sure that the target path is nested in the intended destination </p>
+
+<p> <strong>Source File :</strong> routes/keyServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>52</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>56</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/keyServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>52</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>56</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-res-sendfile.express-res-sendfile </h5>
+</div>
+
+<p><strong>Description :</strong> The application processes user-input, this is passed to res.sendFile which can allow an attacker to arbitrarily read files on the system through path traversal. It is recommended to perform input validation in addition to canonicalizing the path. This allows you to validate the path against the intended directory it should be accessing. </p>
+
+<p> <strong>Source File :</strong> routes/logfileServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>47</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-73: External Control of File Name or Path</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A04:2021 - Insecure Design</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Possible writing outside of the destination, make sure that the target path is nested in the intended destination </p>
+
+<p> <strong>Source File :</strong> routes/logfileServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>42</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>46</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/logfileServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>42</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>46</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/order.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>45</strong>, Column <strong>78</strong> </li>
+<li> To : Line <strong>45</strong>, Column <strong>85</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-ssrf.express-ssrf </h5>
+</div>
+
+<p><strong>Description :</strong> The following request request.get() was found to be crafted from user-input `req` which can lead to Server-Side Request Forgery (SSRF) vulnerabilities. It is recommended where possible to not allow user-input to craft the base request, but to be treated as part of the path or query parameter. When user-input is necessary to craft the request, it is recommeneded to follow OWASP best practices to prevent abuse.  </p>
+
+<p> <strong>Source File :</strong> routes/profileImageUrlUpload.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>23</strong>, Column <strong>16</strong> </li>
+<li> To : Line <strong>23</strong>, Column <strong>19</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-918: Server-Side Request Forgery (SSRF)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A10:2021 - Server-Side Request Forgery (SSRF)</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-res-sendfile.express-res-sendfile </h5>
+</div>
+
+<p><strong>Description :</strong> The application processes user-input, this is passed to res.sendFile which can allow an attacker to arbitrarily read files on the system through path traversal. It is recommended to perform input validation in addition to canonicalizing the path. This allows you to validate the path against the intended directory it should be accessing. </p>
+
+<p> <strong>Source File :</strong> routes/quarantineServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>57</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-73: External Control of File Name or Path</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A04:2021 - Insecure Design</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-path-join-resolve-traversal.express-path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Possible writing outside of the destination, make sure that the target path is nested in the intended destination </p>
+
+<p> <strong>Source File :</strong> routes/quarantineServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>52</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>56</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal </h5>
+</div>
+
+<p><strong>Description :</strong> Detected possible user input going into a `path.join` or `path.resolve` function. This could possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files stored in the file system. Instead, be sure to sanitize or validate user input first. </p>
+
+<p> <strong>Source File :</strong> routes/quarantineServer.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>14</strong>, Column <strong>52</strong> </li>
+<li> To : Line <strong>14</strong>, Column <strong>56</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/www-community/attacks/Path_Traversal">  https://owasp.org/www-community/attacks/Path_Traversal</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A05:2017 - Broken Access Control</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, node.js</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-open-redirect.express-open-redirect </h5>
+</div>
+
+<p><strong>Description :</strong> The application redirects to a URL specified by user-supplied input `query` that is not validated. This could redirect users to malicious locations. Consider using an allow-list approach to validate URLs, or warn users they are being redirected to a third-party website. </p>
+
+<p> <strong>Source File :</strong> routes/redirect.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>19</strong>, Column <strong>20</strong> </li>
+<li> To : Line <strong>19</strong>, Column <strong>25</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-601: URL Redirection to Untrusted Site (&#39;Open Redirect&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.browser.security.eval-detected.eval-detected </h5>
+</div>
+
+<p><strong>Description :</strong> Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this content can be input from outside the program, this may be a code injection vulnerability. Ensure evaluated content is not definable by external sources. </p>
+
+<p> <strong>Source File :</strong> routes/userProfile.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>36</strong>, Column <strong>26</strong> </li>
+<li> To : Line <strong>36</strong>, Column <strong>36</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://owasp.org/Top10/A03_2021-Injection">  https://owasp.org/Top10/A03_2021-Injection</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-95: Improper Neutralization of Directives in Dynamically Evaluated Code (&#39;Eval Injection&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> browser</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.express-insecure-template-usage.express-insecure-template-usage </h5>
+</div>
+
+<p><strong>Description :</strong> User data from `req` is being compiled into the template, which can lead to a Server Side Template Injection (SSTI) vulnerability. </p>
+
+<p> <strong>Source File :</strong> routes/userProfile.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>56</strong>, Column <strong>22</strong> </li>
+<li> To : Line <strong>56</strong>, Column <strong>43</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-1336: Improper Neutralization of Special Elements Used in a Template Engine</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A03:2021 - Injection</li>
+    
+        <li> A01:2017 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, typescript, express, pug, jade, dot, ejs, nunjucks, lodash, handlbars, mustache, hogan.js, eta, squirrelly</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.unknown-value-with-script-tag.unknown-value-with-script-tag </h5>
+</div>
+
+<p><strong>Description :</strong> Cannot determine what &#39;subs&#39; is and it is used with a &#39;&lt;script&gt;&#39; tag. This could be susceptible to cross-site scripting (XSS). Ensure &#39;subs&#39; is not externally controlled, or sanitize this data. </p>
+
+<p> <strong>Source File :</strong> routes/videoHandler.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>57</strong>, Column <strong>90</strong> </li>
+<li> To : Line <strong>57</strong>, Column <strong>94</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.developsec.com/2017/11/09/xss-in-a-script-tag/">  https://www.developsec.com/2017/11/09/xss-in-a-script-tag/</a></li>
+
+<li><a href="https://github.com/juice-shop/juice-shop/blob/1ceb8751e986dacd3214a618c37e7411be6bc11a/routes/videoHandler.ts#L68">  https://github.com/juice-shop/juice-shop/blob/1ceb8751e986dacd3214a618c37e7411be6bc11a/routes/videoHandler.ts#L68</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.unknown-value-with-script-tag.unknown-value-with-script-tag </h5>
+</div>
+
+<p><strong>Description :</strong> Cannot determine what &#39;subs&#39; is and it is used with a &#39;&lt;script&gt;&#39; tag. This could be susceptible to cross-site scripting (XSS). Ensure &#39;subs&#39; is not externally controlled, or sanitize this data. </p>
+
+<p> <strong>Source File :</strong> routes/videoHandler.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>69</strong>, Column <strong>165</strong> </li>
+<li> To : Line <strong>69</strong>, Column <strong>169</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.developsec.com/2017/11/09/xss-in-a-script-tag/">  https://www.developsec.com/2017/11/09/xss-in-a-script-tag/</a></li>
+
+<li><a href="https://github.com/juice-shop/juice-shop/blob/1ceb8751e986dacd3214a618c37e7411be6bc11a/routes/videoHandler.ts#L68">  https://github.com/juice-shop/juice-shop/blob/1ceb8751e986dacd3214a618c37e7411be6bc11a/routes/videoHandler.ts#L68</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-check-directory-listing.express-check-directory-listing </h5>
+</div>
+
+<p><strong>Description :</strong> Directory listing/indexing is enabled, which may lead to disclosure of sensitive directories and files. It is recommended to disable directory listing unless it is a public resource. If you need directory listing, ensure that sensitive files are inaccessible when querying the resource. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>260</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>260</strong>, Column <strong>76</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/serve-index">  https://www.npmjs.com/package/serve-index</a></li>
+
+<li><a href="https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/">  https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-548: Exposure of Information Through Directory Listing</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-check-directory-listing.express-check-directory-listing </h5>
+</div>
+
+<p><strong>Description :</strong> Directory listing/indexing is enabled, which may lead to disclosure of sensitive directories and files. It is recommended to disable directory listing unless it is a public resource. If you need directory listing, ensure that sensitive files are inaccessible when querying the resource. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>264</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>264</strong>, Column <strong>109</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/serve-index">  https://www.npmjs.com/package/serve-index</a></li>
+
+<li><a href="https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/">  https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-548: Exposure of Information Through Directory Listing</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-check-directory-listing.express-check-directory-listing </h5>
+</div>
+
+<p><strong>Description :</strong> Directory listing/indexing is enabled, which may lead to disclosure of sensitive directories and files. It is recommended to disable directory listing unless it is a public resource. If you need directory listing, ensure that sensitive files are inaccessible when querying the resource. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>268</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>268</strong>, Column <strong>115</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/serve-index">  https://www.npmjs.com/package/serve-index</a></li>
+
+<li><a href="https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/">  https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-548: Exposure of Information Through Directory Listing</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-check-directory-listing.express-check-directory-listing </h5>
+</div>
+
+<p><strong>Description :</strong> Directory listing/indexing is enabled, which may lead to disclosure of sensitive directories and files. It is recommended to disable directory listing unless it is a public resource. If you need directory listing, ensure that sensitive files are inaccessible when querying the resource. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>272</strong>, Column <strong>3</strong> </li>
+<li> To : Line <strong>272</strong>, Column <strong>103</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/serve-index">  https://www.npmjs.com/package/serve-index</a></li>
+
+<li><a href="https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/">  https://www.acunetix.com/blog/articles/directory-listing-information-disclosure/</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-548: Exposure of Information Through Directory Listing</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A06:2017 - Security Misconfiguration</li>
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-warning
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.xss.pug.explicit-unescape.template-explicit-unescape </h5>
+</div>
+
+<p><strong>Description :</strong> Detected an explicit unescape in a Pug template, using either &#39;!=&#39; or &#39;!{...}&#39;. If external data can reach these locations, your application is exposed to a cross-site scripting (XSS) vulnerability. If you must do this, ensure no external data can reach this location. </p>
+
+<p> <strong>Source File :</strong> views/promotionVideo.pug </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>79</strong>, Column <strong>13</strong> </li>
+<li> To : Line <strong>79</strong>, Column <strong>40</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-warning">Moderate</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://pugjs.org/language/code.html#unescaped-buffered-code">  https://pugjs.org/language/code.html#unescaped-buffered-code</a></li>
+
+<li><a href="https://pugjs.org/language/attributes.html#unescaped-attributes">  https://pugjs.org/language/attributes.html#unescaped-attributes</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-primary
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.audit.detect-replaceall-sanitization.detect-replaceall-sanitization </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a call to `replaceAll()` in an attempt to HTML escape the string `tableData[i].description`. Manually sanitizing input through a manually built list can be circumvented in many situations, and it&#39;s better to use a well known sanitization library such as `sanitize-html` or `DOMPurify`. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/restfulXssChallenge_2.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>59</strong>, Column <strong>34</strong> </li>
+<li> To : Line <strong>59</strong>, Column <strong>82</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/dompurify">  https://www.npmjs.com/package/dompurify</a></li>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, typescript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-primary
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.audit.detect-replaceall-sanitization.detect-replaceall-sanitization </h5>
+</div>
+
+<p><strong>Description :</strong> Detected a call to `replaceAll()` in an attempt to HTML escape the string `tableData[i].description.replaceAll(&#39;&lt;&#39;, &#39;&amp;lt;&#39;)`. Manually sanitizing input through a manually built list can be circumvented in many situations, and it&#39;s better to use a well known sanitization library such as `sanitize-html` or `DOMPurify`. </p>
+
+<p> <strong>Source File :</strong> data/static/codefixes/restfulXssChallenge_2.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>59</strong>, Column <strong>34</strong> </li>
+<li> To : Line <strong>59</strong>, Column <strong>106</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/dompurify">  https://www.npmjs.com/package/dompurify</a></li>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A07:2017 - Cross-Site Scripting (XSS)</li>
+    
+        <li> A03:2021 - Injection</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, typescript</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-primary
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.express.security.audit.express-check-csurf-middleware-usage.express-check-csurf-middleware-usage </h5>
+</div>
+
+<p><strong>Description :</strong> A CSRF middleware was not detected in your express application. Ensure you are either using one such as `csurf` or `csrf` (see rule references) and/or you are properly doing CSRF validation in your routes with a token or cookies. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>105</strong>, Column <strong>7</strong> </li>
+<li> To : Line <strong>105</strong>, Column <strong>22</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-danger">High</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://www.npmjs.com/package/csurf">  https://www.npmjs.com/package/csurf</a></li>
+
+<li><a href="https://www.npmjs.com/package/csrf">  https://www.npmjs.com/package/csrf</a></li>
+
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">  https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-352: Cross-Site Request Forgery (CSRF)</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript, typescript, express</p>
+
+
+
+
+
+<hr>
+
+
+
+
+<div class="p-2 alert 
+
+    alert-primary
+ rounded-0 mb-2"> 
+    <h5>Check for  javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring </h5>
+</div>
+
+<p><strong>Description :</strong> Detected string concatenation with a non-literal variable in a util.format / console.log function. If an attacker injects a format specifier in the string, it will forge the log message. Try to use constant values for the format string. </p>
+
+<p> <strong>Source File :</strong> server.ts </p>
+
+<p><strong>Finding location :</strong>
+<ul>
+<li> From : Line <strong>148</strong>, Column <strong>21</strong> </li>
+<li> To : Line <strong>148</strong>, Column <strong>63</strong> </li>
+</ul>
+<pre><code class="java"> Preview unavailable, please refer to the line delimiters.</code></pre>
+
+<p>
+    <strong>Issue characteristics : </strong>
+    <span>Severity:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Confidence:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Impact:  
+    
+        <strong class="text-primary">Low</strong>
+    
+    </span> /
+    <span>Likelihood:  
+    
+        <strong class="text-warning">Medium</strong>
+    
+    </span>
+</p>
+
+
+
+
+
+
+
+<strong>References: </strong>
+<ul>
+
+<li><a href="https://cwe.mitre.org/data/definitions/134.html">  https://cwe.mitre.org/data/definitions/134.html</a></li>
+
+</ul>
+
+
+
+
+
+
+<strong>CWE Weakness: </strong>
+<ul>
+
+
+    
+        <li> CWE-134: Use of Externally-Controlled Format String</li>
+    
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<strong>OWASP Issue: </strong>
+<ul>
+
+
+    
+        <li> A01:2021 - Broken Access Control</li>
+    
+
+
+
+</ul>
+
+<p><strong>Tags: </strong> javascript</p>
+
+
+
+
+
+<hr>
+
+
+
+<p class="mt-2 text-end text-secondary">Report generated using Semgrep Community Edition version 1.111.0 JSON</p>
+
+</div>
+</body>
+</html>
