@@ -41,6 +41,13 @@ REQUIRED
 
 Path to the output HTML file. Please include the .html extension.
 
+- --branch
+
+OPTIONAL
+
+Name of the remote branch hosting the project. It can be useful
+to specify the branch being scanned in CI workflows.
+
 - --error
 
 OPTIONAL

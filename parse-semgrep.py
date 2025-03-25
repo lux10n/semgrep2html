@@ -52,7 +52,7 @@ pre, code {
 <div class="p-5">
     <br><br>
     <p class="pt-3 pb-3 text-center"><img src="https://semgrep.dev/build/assets/semgrep-logo-dark-F_zJCZNg.svg" alt="Semgrep CE" width="350px"></p>
-    <h3> Scan of {{ project_name }} </h3>
+    <h3> Scan of {{ project_name }} {% if branch_name %} on branch {{ branch_name }} {% endif %} </h3>
     <h5 class="text-secondary fw-normal"> {{ scan_date }} </h5>
     <hr>
 
@@ -264,6 +264,7 @@ if __name__=="__main__":
     parser.add_argument('--project-name', required=True, help='Name of the project to be scanned')
     parser.add_argument('--input', required=True, help='Path to the input JSON file')
     parser.add_argument('--output', required=True, help='Path to the output file')
+    parser.add_argument("--branch", help="Name of the remote branch hosting the project")
     parser.add_argument("--error", action="store_true", help="Exit with an error code if an exception occurs.")
     parser.add_argument("--only", type=lambda s: s.split(","), help="Generate report only for these severities (comma-separated: INFO,WARNING,ERROR,UNKNOWN).")
 
@@ -315,7 +316,17 @@ if __name__=="__main__":
             project_name = args.project_name
             scan_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S UTC")
             print(f"[o] Generating report {args.output} ...")
-            output = t.render(data, count=count, project_name=project_name, scan_date=scan_date, version=data['version'], scanned_file_count=len(data['paths']['scanned']), severity_counts=severity_counts)
+            branch_name = args.branch if args.branch else None
+            output = t.render(
+                data,
+                count=count,
+                project_name=project_name,
+                scan_date=scan_date,
+                version=data['version'],
+                scanned_file_count=len(data['paths']['scanned']),
+                severity_counts=severity_counts,
+                branch_name=branch_name,
+            )
             with open(args.output, 'w') as f:
                 f.write(output)
             print(f"[+] Successfully generated report {args.output} !")
