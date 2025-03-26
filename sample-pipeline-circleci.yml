@@ -1,0 +1,44 @@
+version: 2.1
+workflows:
+  semgrep:
+    jobs:
+      - semgrep-full-scan
+jobs:
+  semgrep-full-scan:
+    docker:
+      - image: cimg/python:3.13.2
+    steps:
+      - checkout
+
+      - run :
+          name: Generate scan tag
+          command: echo "SCAN_TAGNAME=$CIRCLE_PROJECT_REPONAME-$CIRCLE_BRANCH-$(date +'%Y-%m-%d-%H-%M-%S')" >> $BASH_ENV
+
+      - run:
+          name: Run scan
+          command: | 
+            pip install semgrep
+            semgrep scan --config auto --json-output $SCAN_TAGNAME.json
+
+      - run:
+          name : Generate report
+          command: | 
+            git clone https://github.com/lux10n/semgrep2html.git
+            pip install -r semgrep2html/requirements.txt
+            mkdir /tmp/reports
+            python semgrep2html/parse-semgrep.py --input $SCAN_TAGNAME.json --output /tmp/reports/$SCAN_TAGNAME.html --project-name $CIRCLE_PROJECT_REPONAME --branch $CIRCLE_BRANCH
+
+      - store_artifacts:
+          path: /tmp/reports
+          destination: reports
+
+      - run : 
+          name: Fail if blocking issues exist
+          command: |
+            BLOCKING_ISSUES=$(jq '[.results[] | select(.extra.severity == "ERROR")] | length' $SCAN_TAGNAME.json)
+            if [ "$BLOCKING_ISSUES" -gt 0 ]; then
+              echo "[FAIL] Blocking issues detected! Please check the scanning steps for more details."
+              exit 1
+            else
+              echo "[SUCCESS] No blocking issues found. Closing..."
+            fi
