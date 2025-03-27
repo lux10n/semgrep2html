@@ -10,7 +10,7 @@ workflows:
     jobs:
       - semgrep-full-scan:
           name: Semgrep CE Scan
-          fail-blocking: false
+          fail-blocking: true
           report-filename: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y%m%d-%H%M%S')"
 
 jobs:
