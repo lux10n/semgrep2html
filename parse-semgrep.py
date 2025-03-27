@@ -191,14 +191,15 @@ Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra'][
 {% endif %}
 
 
-{% if result['extra']['metadata']['references'] %}
 <strong>References: </strong>
 <ul>
+{% if result['extra']['metadata']['references'] %}
 {% for x in result['extra']['metadata']['references'] %}
 <li><a href="{{ x }}">  {{ x }}</a></li>
 {% endfor %}
-</ul>
 {% endif %}
+<li><a href="{{ result['extra']['metadata']['shortlink'] }}">  {{ result['extra']['metadata']['shortlink'] }}</a></li>
+</ul>
 
 
 {% if result['extra']['metadata']['cwe'] %}
@@ -281,7 +282,6 @@ if __name__=="__main__":
         with open(args.input, 'r') as f:
             data = json.load(f)
             jdata = data['results']
-
 
             # Apply --only filtering if set
             if args.only:
