@@ -4,7 +4,7 @@ workflows:
     jobs:
       - semgrep-full-scan:
           fail-blocking: false
-          report-filename: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y-%m-%d-%H-%M-%S')"
+          report-filename: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y%m%d-%H%M%S')"
 
 jobs:
   semgrep-full-scan:
@@ -19,8 +19,8 @@ jobs:
       report-filename:
         type: string
         description: "Name of the exported report. Should not contain spaces and special characters except - and _"
-        default: '${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1}-${CIRCLE_WORKFLOW_ID}'
-        # option with timestamp : '${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y-%m-%d-%H-%M-%S')'
+        default: '${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-pipeline-<<pipeline.number>>'
+        # option with timestamp : "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y%m%d-%H%M%S')"
     steps:
       - checkout
 
