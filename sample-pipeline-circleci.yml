@@ -13,8 +13,11 @@ jobs:
       - run :
           name: Setup scan environment
           command: |
-            echo "SCAN_TAGNAME=$CIRCLE_PROJECT_REPONAME-$CIRCLE_BRANCH-$(date +'%Y-%m-%d-%H-%M-%S')" >> $BASH_ENV
             pip install semgrep
+            git clone https://github.com/lux10n/semgrep2html.git
+            pip install -r semgrep2html/requirements.txt
+            mkdir /tmp/reports
+            echo "SCAN_TAGNAME=$CIRCLE_PROJECT_REPONAME-$CIRCLE_BRANCH-$(date +'%Y-%m-%d-%H-%M-%S')" >> $BASH_ENV
 
       - run:
           name: Run scan
@@ -22,11 +25,7 @@ jobs:
 
       - run:
           name : Generate report
-          command: | 
-            git clone https://github.com/lux10n/semgrep2html.git
-            pip install -r semgrep2html/requirements.txt
-            mkdir /tmp/reports
-            python semgrep2html/parse-semgrep.py --input $SCAN_TAGNAME.json --output /tmp/reports/$SCAN_TAGNAME.html --project-name $CIRCLE_PROJECT_REPONAME --branch $CIRCLE_BRANCH
+          command: python semgrep2html/parse-semgrep.py --input $SCAN_TAGNAME.json --output /tmp/reports/$SCAN_TAGNAME.html --project-name $CIRCLE_PROJECT_REPONAME --branch $CIRCLE_BRANCH
 
       - store_artifacts:
           path: /tmp/reports
