@@ -190,16 +190,19 @@ pre, code {
 Docs:  <a href="{{ result['extra']['metadata']['docs'] }}">  {{ result['extra']['metadata']['docs'] }}</a>
 {% endif %}
 
+<strong>Scan rule: </strong>
+<ul>
+    <li><a href="{{ result['extra']['metadata']['source'] }}">{{ result['extra']['metadata']['source'] }}</a></li>
+</ul>
 
+{% if result['extra']['metadata']['references'] %}
 <strong>References: </strong>
 <ul>
-{% if result['extra']['metadata']['references'] %}
 {% for x in result['extra']['metadata']['references'] %}
 <li><a href="{{ x }}">  {{ x }}</a></li>
 {% endfor %}
-{% endif %}
-<li><a href="{{ result['extra']['metadata']['shortlink'] }}">  {{ result['extra']['metadata']['shortlink'] }}</a></li>
 </ul>
+{% endif %}
 
 
 {% if result['extra']['metadata']['cwe'] %}
