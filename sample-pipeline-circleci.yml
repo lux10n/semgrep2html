@@ -1,8 +1,15 @@
 version: 2.1
+
+filters:
+  branches:
+    only:
+      - main
+
 workflows:
   semgrep:
     jobs:
       - semgrep-full-scan:
+          name: Semgrep CE Scan
           fail-blocking: false
           report-filename: "${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-$(date +'%Y%m%d-%H%M%S')"
 
