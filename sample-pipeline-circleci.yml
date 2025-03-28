@@ -15,6 +15,10 @@ workflows:
 
 jobs:
   semgrep-full-scan:
+    description: |
+      This job runs a full Semgrep scan to detect security issues and bad practices.
+      It ensures that pull requests follow security and quality guidelines before merging.
+  
     docker:
       - image: cimg/python:3.13.2
 
@@ -23,6 +27,13 @@ jobs:
         type: boolean
         description: "Fail the pipeline if blocking issues are found. Values : true, false"
         default: true
+      semgrep-config:
+        type: string
+        description: |
+          The Semgrep ruleset to use for scanning the codebase.
+          Examples: p/owasp-top-ten, p/cwe-top-25, or auto for automatic rule selection.
+          See https://semgrep.dev/docs/running-rules for more info.
+        default: auto
       report-filename:
         type: string
         description: "Name of the exported report. Should not contain spaces and special characters except - and _"
@@ -43,12 +54,21 @@ jobs:
 
       - run:
           name: Run scan
+          environment:
+            SEMGREP_CONFIG: <<parameters.semgrep-config>>
           command: |
-            semgrep scan --config auto --json-output _semgrep-findings.json
+            semgrep scan \
+              --config $SEMGREP_CONFIG \
+              --json-output _semgrep-findings.json
 
       - run:
           name : Generate report
-          command: python semgrep2html/parse-semgrep.py --input _semgrep-findings.json --output /tmp/reports/$SEMGREP_REPORT_FILENAME.html --project-name $CIRCLE_PROJECT_REPONAME --branch $CIRCLE_BRANCH
+          command: |
+            python semgrep2html/parse-semgrep.py \
+              --input _semgrep-findings.json \
+              --output /tmp/reports/$SEMGREP_REPORT_FILENAME.html \
+              --project-name $CIRCLE_PROJECT_REPONAME \
+              --branch $CIRCLE_BRANCH
 
       - store_artifacts:
           path: /tmp/reports
